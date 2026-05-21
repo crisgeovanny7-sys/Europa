@@ -7,12 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #1c1917;
-  --paper: #faf7f2;
-  --cream: #f0ebe0;
-  --gold: #b8860b;
-  --muted: #78716c;
-  --line: #e5dfd4;
+  --ink: #000000;
+  --paper: #ffffff;
+  --cream: #f5f5f5;
+  --gold: #8B6000;
+  --muted: #444444;
+  --line: #cccccc;
 
   --roma: #9b2226;
   --venezia: #0a6c74;
@@ -30,7 +30,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: 'Source Serif 4', serif;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.75;
 }
 
@@ -60,10 +60,10 @@ body {
   font-weight: 700; font-style: italic;
   color: white; line-height: 1; margin-bottom: 1rem;
 }
-.cover h1 span { color: var(--gold); }
+.cover h1 span { color: #8B6000; }
 .cover-sub {
   font-family: 'Source Serif 4', serif;
-  font-size: 1.1rem; font-weight: 300;
+  font-size: 1.1rem; font-weight: 400;
   color: rgba(255,255,255,0.45);
   margin-bottom: 3rem; max-width: 400px;
 }
@@ -82,7 +82,7 @@ body {
   cursor: pointer; transition: color 0.2s;
 }
 .cover-city:last-child { border-right: none; }
-.cover-city:hover { color: var(--gold); }
+.cover-city:hover { color: #8B6000; }
 .scroll-hint {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; letter-spacing: 0.2em;
@@ -108,7 +108,7 @@ body {
   border-bottom: 2px solid transparent; flex-shrink: 0;
 }
 .nav-btn:hover { color: rgba(255,255,255,0.7); }
-.nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.nav-btn.active { color: #8B6000; border-bottom-color: #8B6000; }
 
 /* ── CHAPTER ── */
 .chapter { display: none; }
@@ -134,7 +134,7 @@ body {
 .chapter-num {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px; letter-spacing: 0.25em;
-  color: var(--muted); text-transform: uppercase; margin-bottom: 1rem;
+  color: #444444; text-transform: uppercase; margin-bottom: 1rem;
 }
 .chapter-hero h2 {
   font-family: 'Playfair Display', serif;
@@ -143,7 +143,7 @@ body {
 }
 .chapter-hero .tagline {
   font-size: 1.05rem; font-style: italic;
-  color: var(--muted); margin-bottom: 0;
+  color: #444444; margin-bottom: 0;
 }
 
 /* ── CONTENT ── */
@@ -161,7 +161,7 @@ h3 {
   margin: 2.5rem 0 1rem; color: var(--ink);
 }
 
-p { margin-bottom: 1.25rem; color: #3d3630; }
+p { margin-bottom: 1.25rem; color: #111111; }
 
 .fact-box {
   background: var(--cream); border-left: 3px solid var(--gold);
@@ -169,7 +169,7 @@ p { margin-bottom: 1.25rem; color: #3d3630; }
 }
 .fact-box .fact-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: 0.2em; color: var(--gold);
+  font-size: 10px; letter-spacing: 0.2em; color: #8B6000;
   text-transform: uppercase; margin-bottom: 0.5rem;
 }
 .fact-box p { color: var(--ink); margin: 0; font-size: 0.95rem; line-height: 1.7; }
@@ -185,13 +185,13 @@ p { margin-bottom: 1.25rem; color: #3d3630; }
 blockquote {
   border-left: 2px solid var(--gold);
   padding: 0.5rem 0 0.5rem 1.5rem; margin: 1.5rem 0;
-  font-style: italic; font-size: 1.05rem; color: var(--muted);
+  font-style: italic; font-size: 1.05rem; color: #444444;
 }
 
 .place-card {
   border: 1px solid var(--line); border-radius: 4px;
   padding: 1.25rem 1.5rem; margin: 1.25rem 0;
-  background: white;
+  background: #ffffff;
 }
 .place-card .place-name {
   font-family: 'Playfair Display', serif;
@@ -199,18 +199,18 @@ blockquote {
 }
 .place-card .place-year {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--muted); letter-spacing: 0.1em;
+  font-size: 10px; color: #444444; letter-spacing: 0.1em;
   margin-bottom: 0.75rem;
 }
-.place-card p { margin: 0; font-size: 0.92rem; line-height: 1.7; color: #4a4540; }
+.place-card p { margin: 0; font-size: 0.92rem; line-height: 1.7; color: #111111; }
 
 .divider {
-  text-align: center; margin: 2.5rem 0; color: var(--gold);
+  text-align: center; margin: 2.5rem 0; color: #8B6000;
   font-size: 1.2rem; letter-spacing: 0.5rem;
 }
 
 .whisper {
-  font-size: 0.85rem; font-style: italic; color: var(--muted);
+  font-size: 0.85rem; font-style: italic; color: #444444;
   text-align: center; margin: 1.5rem 0;
 }
 
@@ -222,10 +222,10 @@ blockquote {
 }
 .hist-year {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: var(--gold);
+  font-size: 11px; color: #8B6000;
   padding-top: 3px; text-align: right; font-weight: 500;
 }
-.hist-text { font-size: 0.9rem; color: #4a4540; line-height: 1.6; border-left: 1px solid var(--line); padding-left: 1rem; }
+.hist-text { font-size: 0.9rem; color: #111111; line-height: 1.6; border-left: 1px solid var(--line); padding-left: 1rem; }
 
 @media (max-width: 600px) {
   .hist-item { grid-template-columns: 70px 1fr; }
@@ -267,7 +267,7 @@ blockquote {
 
 <!-- ══════════ ROMA ══════════ -->
 <div class="chapter" id="roma">
-  <div class="chapter-hero" data-letter="R" style="background:linear-gradient(135deg,#fdf6f0,#fae8e0)">
+  <div class="chapter-hero" data-letter="R" style="background:#ffffff">
     <div class="chapter-num">Ciudad I · Italia</div>
     <h2 style="color:var(--roma)">Roma</h2>
     <p class="tagline">La ciudad que inventó el mundo occidental</p>
@@ -322,7 +322,7 @@ blockquote {
 
 <!-- ══════════ FLORENCIA ══════════ -->
 <div class="chapter" id="firenze">
-  <div class="chapter-hero" data-letter="F" style="background:linear-gradient(135deg,#fdf8f0,#faecd8)">
+  <div class="chapter-hero" data-letter="F" style="background:#ffffff">
     <div class="chapter-num">Ciudad II · Italia</div>
     <h2 style="color:var(--firenze)">Florencia</h2>
     <p class="tagline">La ciudad que despertó al mundo del sueño medieval</p>
@@ -367,7 +367,7 @@ blockquote {
 
 <!-- ══════════ PISA ══════════ -->
 <div class="chapter" id="pisa">
-  <div class="chapter-hero" data-letter="P" style="background:linear-gradient(135deg,#f0f8f0,#dff0df)">
+  <div class="chapter-hero" data-letter="P" style="background:#ffffff">
     <div class="chapter-num">Ciudad III · Italia</div>
     <h2 style="color:var(--firenze)">Pisa</h2>
     <p class="tagline">La ciudad que construyó el error más famoso del mundo</p>
@@ -395,7 +395,7 @@ blockquote {
 
 <!-- ══════════ VENECIA ══════════ -->
 <div class="chapter" id="venezia">
-  <div class="chapter-hero" data-letter="V" style="background:linear-gradient(135deg,#f0f8fa,#daeef2)">
+  <div class="chapter-hero" data-letter="V" style="background:#ffffff">
     <div class="chapter-num">Ciudad IV · Italia</div>
     <h2 style="color:var(--venezia)">Venecia</h2>
     <p class="tagline">La ciudad imposible construida sobre el agua</p>
@@ -435,7 +435,7 @@ blockquote {
 
 <!-- ══════════ PARÍS ══════════ -->
 <div class="chapter" id="paris">
-  <div class="chapter-hero" data-letter="P" style="background:linear-gradient(135deg,#f0f0fa,#dcdefa)">
+  <div class="chapter-hero" data-letter="P" style="background:#ffffff">
     <div class="chapter-num">Ciudad V · Francia</div>
     <h2 style="color:var(--paris)">París</h2>
     <p class="tagline">La ciudad que inventó la modernidad</p>
@@ -486,7 +486,7 @@ blockquote {
 
 <!-- ══════════ ÁMSTERDAM ══════════ -->
 <div class="chapter" id="amsterdam">
-  <div class="chapter-hero" data-letter="A" style="background:linear-gradient(135deg,#fdf8f0,#faedda)">
+  <div class="chapter-hero" data-letter="A" style="background:#ffffff">
     <div class="chapter-num">Ciudad VI · Países Bajos</div>
     <h2 style="color:var(--amsterdam)">Ámsterdam</h2>
     <p class="tagline">La ciudad que inventó el capitalismo moderno</p>
@@ -531,7 +531,7 @@ blockquote {
 
 <!-- ══════════ BARCELONA ══════════ -->
 <div class="chapter" id="barcelona">
-  <div class="chapter-hero" data-letter="B" style="background:linear-gradient(135deg,#faf0f5,#f5d8e8)">
+  <div class="chapter-hero" data-letter="B" style="background:#ffffff">
     <div class="chapter-num">Ciudad VII · España</div>
     <h2 style="color:var(--barcelona)">Barcelona</h2>
     <p class="tagline">La ciudad que nunca quiso ser España</p>
@@ -565,7 +565,7 @@ blockquote {
 
 <!-- ══════════ MADRID ══════════ -->
 <div class="chapter" id="madrid">
-  <div class="chapter-hero" data-letter="M" style="background:linear-gradient(135deg,#fdf8e8,#faecc8)">
+  <div class="chapter-hero" data-letter="M" style="background:#ffffff">
     <div class="chapter-num">Ciudad VIII · España</div>
     <h2 style="color:var(--madrid)">Madrid</h2>
     <p class="tagline">La capital que fue elegida por ser el centro exacto de la península</p>
