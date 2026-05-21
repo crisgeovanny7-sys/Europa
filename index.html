@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Europa 2026 — Guía de Viaje</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,300;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f5f0e8;
+  --paper: #faf8f4;
+  --ink: #1a1814;
+  --ink2: #3d3a35;
+  --muted: #8a8478;
+  --line: #e2ddd5;
+  --roma: #c0392b;
+  --firenze: #c47a2b;
+  --pisa: #5a9a3f;
+  --venezia: #1a7a9a;
+  --paris: #2d43c0;
+  --amsterdam: #c06010;
+  --barcelona: #b81858;
+  --madrid: #a07800;
+  --warn: #e67e22;
+  --warn-bg: #fef5e7;
+  --alert: #c0392b;
+  --alert-bg: #fdf0ee;
+  --tip: #1a7a5a;
+  --tip-bg: #eaf5f0;
+  --food: #7a3a9a;
+  --food-bg: #f5eefa;
+  --money: #1a5a9a;
+  --money-bg: #eaf0fa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--ink);
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto; padding: 0 1rem;
+  border-bottom: 2px solid var(--ink);
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); padding: 14px 14px;
+  cursor: pointer; border: none; background: none;
+  white-space: nowrap; transition: all 0.2s;
+  border-bottom: 3px solid transparent;
+  flex-shrink: 0;
+}
+.nav-btn:hover { color: white; }
+.nav-btn.active { color: white; border-bottom-color: white; }
+
+/* ── HERO ── */
+.hero {
+  background: var(--ink);
+  color: white;
+  padding: 4rem 2rem 3rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: 'EUROPA';
+  position: absolute; right: -2rem; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(6rem, 18vw, 14rem);
+  font-weight: 700; font-style: italic;
+  color: rgba(255,255,255,0.04);
+  white-space: nowrap; pointer-events: none;
+  line-height: 1;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.25em; color: rgba(255,255,255,0.4);
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 300; line-height: 0.95;
+  margin-bottom: 1rem;
+}
+.hero h1 em { font-style: italic; color: rgba(255,255,255,0.5); }
+.hero-meta {
+  display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem;
+}
+.hero-stat { }
+.hero-stat-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 500; line-height: 1;
+}
+.hero-stat-label {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: rgba(255,255,255,0.35); letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hero-couple {
+  margin-top: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem; font-style: italic;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ── LEGEND ── */
+.legend {
+  background: var(--cream); border-bottom: 1px solid var(--line);
+  padding: 0.75rem 1.5rem;
+  display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+}
+.leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+.leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── PAGE ── */
+.page { max-width: 860px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── DAY CARD ── */
+.day-card {
+  margin: 2rem 0;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  background: white;
+}
+.day-header {
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: 1rem; align-items: center;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+  color: white;
+}
+.day-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem; font-weight: 300; line-height: 1;
+  opacity: 0.4; letter-spacing: -0.02em;
+}
+.day-info { }
+.day-date {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.15em; opacity: 0.5; margin-bottom: 2px;
+}
+.day-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 500; line-height: 1.1;
+}
+.day-window {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  opacity: 0.5; text-align: right; line-height: 1.6;
+}
+
+.day-body { padding: 1.25rem 1.5rem; }
+
+/* ── TIMELINE ITEMS ── */
+.timeline { display: flex; flex-direction: column; gap: 4px; }
+
+.tl-item {
+  display: grid; grid-template-columns: 60px 1fr;
+  gap: 12px; align-items: start; padding: 8px 10px;
+  border-radius: 4px;
+}
+.tl-time {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: var(--muted); padding-top: 2px; text-align: right;
+  line-height: 1.4;
+}
+.tl-content { }
+.tl-title {
+  font-size: 13px; font-weight: 500; color: var(--ink);
+  margin-bottom: 2px;
+}
+.tl-note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ── CARDS ROW ── */
+.cards-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px; margin-top: 1rem;
+}
+
+/* ── ALERT BOXES ── */
+.box {
+  border-radius: 4px; padding: 10px 14px; margin: 8px 0;
+  font-size: 12.5px; line-height: 1.6;
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.box-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.box-body { flex: 1; }
+.box-title { font-weight: 600; font-size: 12px; margin-bottom: 2px; }
+
+.box.warn { background: var(--warn-bg); color: #7a4a00; border-left: 3px solid var(--warn); }
+.box.alert { background: var(--alert-bg); color: #7a1010; border-left: 3px solid var(--alert); }
+.box.tip { background: var(--tip-bg); color: #0e5a3a; border-left: 3px solid var(--tip); }
+.box.food { background: var(--food-bg); color: #4a1a6a; border-left: 3px solid var(--food); }
+.box.money { background: var(--money-bg); color: #0d3a6a; border-left: 3px solid var(--money); }
+.box.couple { background: #fff0f5; color: #6a0a30; border-left: 3px solid #c01858; }
+
+/* ── TICKET PILLS ── */
+.ticket-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.ticket {
+  display: inline-flex; align-items: center; gap: 5px;
+  border-radius: 20px; padding: 4px 11px;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.04em;
+}
+.t-confirmed { background: #e8edfb; color: #2d43c0; }
+.t-insitu { background: #fef5e7; color: #7a4a00; }
+.t-online { background: #eaf5f0; color: #0e5a3a; }
+.t-free { background: #f0f5ea; color: #2a5a10; }
+.t-included { background: #f0eafa; color: #4a1a7a; }
+
+/* ── PRICE TAG ── */
+.price-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: var(--money); background: var(--money-bg);
+  border-radius: 3px; padding: 1px 7px;
+  margin-left: 4px;
+}
+
+/* ── SECTION DIVIDER ── */
+.sect-divider {
+  display: flex; align-items: center; gap: 10px;
+  margin: 1.5rem 0 0.75rem;
+}
+.sect-divider-line { flex: 1; height: 1px; background: var(--line); }
+.sect-divider-label {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.15em; color: var(--muted);
+  text-transform: uppercase;
+}
+
+/* ── TRANSPORT STRIP ── */
+.transport-strip {
+  background: var(--cream); border: 1px solid var(--line);
+  border-radius: 4px; padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px;
+  margin: 6px 0; flex-wrap: wrap;
+}
+.ts-route { font-size: 13px; font-weight: 500; flex: 1; }
+.ts-time { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+.ts-carrier { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+.ts-price { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--money); }
+
+/* ── MUST DO / EAT ── */
+.must-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.must-item {
+  background: var(--cream); border-radius: 4px; padding: 8px 12px;
+  font-size: 12px; color: var(--ink2); line-height: 1.5;
+}
+.must-item strong { display: block; font-weight: 600; font-size: 12px; margin-bottom: 1px; }
+
+/* QUICK SUMMARY BAR */
+.qbar {
+  background: var(--ink); color: white;
+  display: flex; gap: 0; overflow-x: auto;
+  border-radius: 0 0 4px 4px; margin-bottom: 0;
+  scrollbar-width: none;
+}
+.qbar::-webkit-scrollbar { display: none; }
+.qbar-item {
+  padding: 8px 16px; font-size: 11px; white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.qbar-item span { display: block; font-family: 'DM Mono', monospace; font-size: 10px; opacity: 0.4; }
+
+/* ── CITY OVERVIEW ── */
+.city-card {
+  background: white; border: 1px solid var(--line);
+  border-radius: 2px; overflow: hidden; margin-bottom: 1rem;
+}
+.city-card-header {
+  padding: 1rem 1.5rem; color: white;
+  display: flex; align-items: center; gap: 14px;
+}
+.city-card-header .emoji { font-size: 24px; }
+.city-card-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 500;
+}
+.city-card-header .window {
+  margin-left: auto; font-family: 'DM Mono', monospace;
+  font-size: 10px; opacity: 0.5; text-align: right; line-height: 1.6;
+}
+.city-card-body { padding: 1.25rem 1.5rem; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .must-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.6rem; }
+  .tl-item { grid-template-columns: 50px 1fr; }
+  .day-header { grid-template-columns: auto 1fr; }
+  .day-window { display: none; }
+}
+
+.sep { margin: 1rem 0; border: none; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Guía de Viaje · 2 personas · 2026</div>
+  <h1>Europa<br><em>by Geovanny & Estrella</em></h1>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <div class="hero-stat-val">27</div>
+      <div class="hero-stat-label">días</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">5</div>
+      <div class="hero-stat-label">países</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">8</div>
+      <div class="hero-stat-label">ciudades</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-val">$8,000</div>
+      <div class="hero-stat-label">presupuesto/pax</div>
+    </div>
+  </div>
+  <div class="hero-couple">✦ Dos locos aventureros en su primera vez en Europa ✦</div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:#2d43c0"></div> Entrada confirmada</div>
+  <div class="leg"><div class="leg-dot" style="background:#e67e22"></div> Comprar en sitio</div>
+  <div class="leg"><div class="leg-dot" style="background:#1a7a5a"></div> Sugerencia</div>
+  <div class="leg"><div class="leg-dot" style="background:#7a3a9a"></div> No olvidar comer</div>
+  <div class="leg"><div class="leg-dot" style="background:#c0392b"></div> Alerta de tiempo</div>
+  <div class="leg"><div class="leg-dot" style="background:#c01858"></div> Momento de pareja</div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn active" onclick="show('overview')">🗺 Resumen</button>
+  <button class="nav-btn" onclick="show('madrid0')">🇪🇸 Madrid</button>
+  <button class="nav-btn" onclick="show('roma')">🇮🇹 Roma</button>
+  <button class="nav-btn" onclick="show('firenze')">🌸 Florencia+Pisa</button>
+  <button class="nav-btn" onclick="show('venezia')">🚤 Venecia</button>
+  <button class="nav-btn" onclick="show('paris')">🗼 París</button>
+  <button class="nav-btn" onclick="show('barcelona')">🏖 Barcelona</button>
+  <button class="nav-btn" onclick="show('amsterdam')">🌷 Ámsterdam</button>
+  <button class="nav-btn" onclick="show('madrid2')">🏟 Madrid fin</button>
+  <button class="nav-btn" onclick="show('presupuesto')">💰 Presupuesto</button>
+</nav>
+
+<div class="page">
+
+<!-- ══════════════════ OVERVIEW ══════════════════ -->
+<div class="section active" id="overview">
+  <div style="padding: 1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;margin-bottom:0.5rem">Tu viaje de un vistazo</h2>
+    <p style="color:var(--muted);font-size:13px">Navega por cada ciudad usando el menú de arriba. Aquí tienes las alertas más importantes del viaje completo.</p>
+  </div>
+
+  <div class="box alert"><div class="box-icon">🚨</div><div class="box-body"><div class="box-title">ALERTA CRÍTICA — Lunes 15 junio</div>Aterrizas de Ámsterdam a las 08:05 y las clases EADA empiezan a las 09:00. Es prácticamente imposible llegar a tiempo a Collbató. Habla con EADA antes del viaje para explicar la situación.</div></div>
+
+  <div class="box alert"><div class="box-icon">⏰</div><div class="box-body"><div class="box-title">ALERTA — Sábado 6 junio: Versailles + PSG el mismo día</div>Versailles abre a las 09:30 y el estadio PSG queda al otro lado de París. Este día está sobrecargado — Versailles solo toma 5-6 horas mínimo. El PSG puede quedar para otro viaje a París.</div></div>
+
+  <div class="box alert"><div class="box-icon">⏰</div><div class="box-body"><div class="box-title">ALERTA — Domingo 7 junio: Barcelona con vuelo a las 08:25</div>Llegas de París a las 08:25 sin haber dormido bien (vuelo a las 06:45 de madrugada). Tienes planeados Camp Nou, Casa Batlló y Sagrada Familia. Es demasiado para ese día — prioriza solo uno.</div></div>
+
+  <div class="box warn"><div class="box-icon">⚠️</div><div class="box-body"><div class="box-title">Martes 2 junio — El día más apretado del viaje</div>Roma → Florencia (05:40) → Pisa (13:53) → Venecia (tren nocturno 23:18). Son 3 ciudades en un solo día. Funciona, pero hay que ser muy puntual con cada tren.</div></div>
+
+  <div class="box warn"><div class="box-icon">⚠️</div><div class="box-body"><div class="box-title">Madrugadas peligrosas × 3</div>Vuelo a Ámsterdam el 13 jun a las 07:10 (salir a las 05:00). Regreso a BCN el 15 jun a las 05:55 (salir a las 04:00). AVE a Madrid el 19 jun a las 05:45. Prepara equipaje siempre la noche anterior.</div></div>
+
+  <div class="box tip"><div class="box-icon">💡</div><div class="box-body"><div class="box-title">Lo que SÍ tienen que reservar online antes de salir</div>Coliseo + Foro Romano (coopculture.it) · Museos Vaticanos (museivaticani.va) · Torre Eiffel (toureiffel.paris) · Sagrada Familia (sagradafamilia.org). Sin reserva = 2-3h de cola bajo el sol.</div></div>
+
+  <div class="box money"><div class="box-icon">💳</div><div class="box-body"><div class="box-title">Presupuesto total por persona: $8,000 USD</div>Saldo Geovanny: $3,139 · Saldo Estrella: $2,856 · Ya gastado en tickets/transport: ~$930/pax. Les quedan ~$1,800-2,200 cada uno para comida, actividades en sitio y compras.</div></div>
+
+  <!-- RESUMEN RUTA -->
+  <div class="sect-divider"><div class="sect-divider-line"></div><div class="sect-divider-label">Ruta del viaje</div><div class="sect-divider-line"></div></div>
+
+  <div style="display:flex;flex-direction:column;gap:4px;margin:1rem 0;">
+    <div class="transport-strip"><span class="ts-route">✈ Lima → Bogotá → Madrid</span><span class="ts-time">29 may 01:40</span><span class="ts-carrier">AV048 + AV046</span></div>
+    <div class="transport-strip"><span class="ts-route">✈ Madrid → Roma</span><span class="ts-time">30 may 21:45</span><span class="ts-carrier">Ryanair</span><span class="ts-price">$80.37</span></div>
+    <div class="transport-strip"><span class="ts-route">🚄 Roma → Florencia</span><span class="ts-time">2 jun 05:40</span><span class="ts-carrier">Italo</span><span class="ts-price">$40.82</span></div>
+    <div class="transport-strip"><span class="ts-route">🚆 Florencia → Pisa</span><span class="ts-time">2 jun 13:53</span><span class="ts-carrier">Regionale</span><span class="ts-price">$21.34</span></div>
+    <div class="transport-strip"><span class="ts-route">🌙 Florencia → Venecia (nocturno)</span><span class="ts-time">2 jun 23:18</span><span class="ts-carrier">Omio</span><span class="ts-price">$72.45</span></div>
+    <div class="transport-strip"><span class="ts-route">✈ Venecia → París</span><span class="ts-time">4 jun 12:30</span><span class="ts-carrier">EasyJet</span><span class="ts-price">$170.00</span></div>
+    <div class="transport-strip"><span class="ts-route">✈ París → Barcelona</span><span class="ts-time">7 jun 06:45</span><span class="ts-carrier">Vueling</span><span class="ts-price">$162.74</span></div>
+    <div class="transport-strip"><span class="ts-route">✈ Barcelona → Ámsterdam</span><span class="ts-time">13 jun 07:10</span><span class="ts-carrier">Vueling</span><span class="ts-price">$165.14</span></div>
+    <div class="transport-strip"><span class="ts-route">✈ Ámsterdam → Barcelona</span><span class="ts-time">15 jun 05:55</span><span class="ts-carrier">Transavia</span><span class="ts-price">$204.03</span></div>
+    <div class="transport-strip"><span class="ts-route">🚄 Barcelona → Madrid</span><span class="ts-time">19 jun 05:45</span><span class="ts-carrier">Iryo</span><span class="ts-price">$141.12</span></div>
+    <div class="transport-strip"><span class="ts-route">✈ Madrid → Bogotá → Lima</span><span class="ts-time">21 jun 08:10</span><span class="ts-carrier">AV027 + AV053</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════ MADRID ESCALA ══════════════════ -->
+<div class="section" id="madrid0">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Madrid — La llegada</h2>
+    <p style="color:var(--muted);font-size:13px">30 mayo · ~21 horas en Madrid antes de volar a Roma</p>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--madrid)">
+      <div class="day-num">30</div>
+      <div class="day-info">
+        <div class="day-date">SÁBADO · MAYO</div>
+        <div class="day-title">Llegas a Madrid — escala de 21h</div>
+      </div>
+      <div class="day-window">Vuelo Roma<br>21:45</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">00:20</div>
+          <div class="tl-content"><div class="tl-title">🌙 Aterrizaje Madrid Barajas</div><div class="tl-note">Llegas de Bogotá. Descansa unas horas — hotel cerca del aeropuerto o sala VIP.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00</div>
+          <div class="tl-content"><div class="tl-title">Plaza de España y Palacio Real</div><div class="tl-note">El Palacio Real es la residencia oficial más grande de Europa occidental. Entrada ~€14. O solo ver la fachada gratis.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">11:00</div>
+          <div class="tl-content"><div class="tl-title">Catedral de la Almudena + Plaza Mayor</div><div class="tl-note">A pasos del Palacio Real. La Plaza Mayor es perfecta para el primer café europeo.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">13:30</div>
+          <div class="tl-content"><div class="tl-title">Mercado de San Miguel — almuerzo</div><div class="tl-note">El mercado gourmet más famoso de Madrid. Tapas, jamón ibérico, vino. Presupuesta €20-30 entre los dos.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">15:30</div>
+          <div class="tl-content"><div class="tl-title">Descanso — regreso al aeropuerto</div><div class="tl-note">Guarda equipaje en consigna (Barajas tiene consigna 24h) y sal liviano de día.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content"><div class="tl-title">✈ Check-in vuelo Madrid → Roma</div><div class="tl-note">Ryanair Terminal 1 o 4S — verifica con la app. Estar en el gate a las 20:45.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">21:45</div>
+          <div class="tl-content"><div class="tl-title">✈ Vuelo Madrid → Roma Fiumicino</div><div class="tl-note">2h 25min. Llegas a las 00:10 del 31 mayo.</div></div>
+        </div>
+      </div>
+
+      <div class="box food" style="margin-top:1rem"><div class="box-icon">🍽</div><div class="box-body"><div class="box-title">Come esto en Madrid</div>Bocadillo de calamares (típico madrileño, €3-4), churros con chocolate en la Chocolatería San Ginés (abierta 24h), y por lo menos un pintxo de jamón ibérico.</div></div>
+      <div class="box couple"><div class="box-icon">💕</div><div class="box-body"><div class="box-title">Momento de pareja</div>El atardecer desde el Templo de Debod (parque junto al Palacio Real) es uno de los más bonitos de Madrid. Gratis y espectacular.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ROMA ══════════════════ -->
+<div class="section" id="roma">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Roma — La Ciudad Eterna</h2>
+    <p style="color:var(--muted);font-size:13px">31 mayo – 2 junio · 2 noches · Hotel Via Farini (Germano)</p>
+  </div>
+
+  <!-- DÍA 1 ROMA -->
+  <div class="day-card">
+    <div class="day-header" style="background:var(--roma)">
+      <div class="day-num">31</div>
+      <div class="day-info">
+        <div class="day-date">DOMINGO · MAYO</div>
+        <div class="day-title">Roma — Día 1 · El gran tour</div>
+      </div>
+      <div class="day-window">Estadio Olímpico<br>14:00 ✅</div>
+    </div>
+    <div class="day-body">
+      <div class="box warn"><div class="box-icon">⏰</div><div class="box-body">Llegas a Fiumicino a las 00:10. El hotel (Via Farini 62) tiene check-in desde las 13:00. Guarda maletas en recepción si llegas antes y sal a explorar.</div></div>
+
+      <div class="timeline" style="margin-top:1rem">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">00:10</div>
+          <div class="tl-content"><div class="tl-title">🌙 Aterrizaje Roma Fiumicino</div><div class="tl-note">Tren Leonardo Express a Roma Termini (€14/pax, 32 min) o taxi fijo €50. El tren es más cómodo con maletas.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00</div>
+          <div class="tl-content"><div class="tl-title">🏛 Coliseo + Foro Romano + Palatino</div><div class="tl-note">El pack incluye los tres. Llegad antes de la apertura (09:00) para evitar el calor y las colas. Calculad 2-3 horas.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">12:00</div>
+          <div class="tl-content"><div class="tl-title">⛲ Fontana di Trevi</div><div class="tl-note">A 15 min a pie del Coliseo. Llegad antes del mediodía — de tarde se llena de turistas. Tirad la moneda con la mano derecha por encima del hombro izquierdo para volver.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">13:00</div>
+          <div class="tl-content"><div class="tl-title">🏛 Pantheon + Piazza Navona</div><div class="tl-note">El Pantheon tiene entrada (~€5). Está a 5 min de la Fontana di Trevi. Piazza Navona es gratis y perfecta para el almuerzo en terracita.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">14:00</div>
+          <div class="tl-content"><div class="tl-title">🏟 Tour Estadio Olímpico de Roma ✅ CONFIRMADO</div><div class="tl-note">Ingreso: Tribuna Monte Mario · Códigos: BPQV8SU9L0 / INOUBDWFTQ · Llevar el QR descargado.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">17:00</div>
+          <div class="tl-content"><div class="tl-title">🌆 Trastévere — el barrio más auténtico</div><div class="tl-note">Calles de adoquín, hiedra en las paredes, trattorias con mesas en la calle. Perfecto para cenar y perderse.</div></div>
+        </div>
+      </div>
+
+      <div class="sect-divider"><div class="sect-divider-line"></div><div class="sect-divider-label">Tickets del día</div><div class="sect-divider-line"></div></div>
+      <div class="ticket-row">
+        <span class="ticket t-confirmed">🎫 Estadio Olímpico — CONFIRMADO €17.50/pax</span>
+        <span class="ticket t-insitu">🎟 Coliseo+Foro+Palatino — €18/pax en sitio</span>
+        <span class="ticket t-insitu">🎟 Pantheon — ~€5/pax en sitio</span>
+        <span class="ticket t-free">✓ Fontana di Trevi — gratis</span>
+        <span class="ticket t-free">✓ Piazza Navona — gratis</span>
+      </div>
+
+      <div class="box money" style="margin-top:1rem"><div class="box-icon">💰</div><div class="box-body"><div class="box-title">Presupuesto del día</div>Tickets ~€23/pax · Comida ~€30-40/pax · Transporte ~€15/pax. Total estimado: <strong>€70-80/pax</strong></div></div>
+      <div class="box food"><div class="box-icon">🍝</div><div class="box-body"><div class="box-title">No puedes irte de Roma sin probar</div><strong>Cacio e pepe</strong> — la pasta más simple y deliciosa de Roma (queso pecorino + pimienta negra). Busca una trattoria en Trastévere, no en zona turística. También: suppli (croqueta de arroz frita, €1.50) y gelato artesanal (evita los que tienen montañas de colores — busca los que guardan el helado tapado).</div></div>
+      <div class="box couple"><div class="box-icon">💕</div><div class="box-body"><div class="box-title">Plan de noche en Roma</div>La Fontana di Trevi de noche, sin turistas y con las luces, es mágica. Ir después de las 22:00 y tirar la moneda juntos.</div></div>
+    </div>
+  </div>
+
+  <!-- DÍA 2 ROMA -->
+  <div class="day-card">
+    <div class="day-header" style="background:var(--roma)">
+      <div class="day-num">1</div>
+      <div class="day-info">
+        <div class="day-date">LUNES · JUNIO</div>
+        <div class="day-title">Roma — Día 2 · Vaticano y alrededores</div>
+      </div>
+      <div class="day-window">Checkout mañana<br>antes 10:00</div>
+    </div>
+    <div class="day-body">
+      <div class="box alert"><div class="box-icon">🚨</div><div class="box-body"><div class="box-title">Reserven el Vaticano HOY si no lo han hecho</div>Sin reserva online = 2-3h de cola. Entrad en museivaticani.va. Precio: €17/pax sin guía. Los cupos se agotan semanas antes.</div></div>
+
+      <div class="timeline" style="margin-top:1rem">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">08:00</div>
+          <div class="tl-content"><div class="tl-title">⛪ Vaticano — Museos + Capilla Sixtina</div><div class="tl-note">La Capilla Sixtina se llena rapidísimo. Entrar en los primeros turnos. Calculad 3 horas mínimo para todo el recorrido.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:00</div>
+          <div class="tl-content"><div class="tl-title">⛪ Basílica de San Pedro</div><div class="tl-note">Incluida con el Vaticano. La cúpula se puede subir (€8 a pie, €10 en ascensor). La vista de Roma desde arriba es impresionante.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">13:00</div>
+          <div class="tl-content"><div class="tl-title">🏰 Castel Sant'Angelo</div><div class="tl-note">A 10 min del Vaticano caminando. Entrada ~€15/pax. Desde la terraza se ve el río Tíber y la cúpula de San Pedro. Opcional si el tiempo apremia.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">15:00</div>
+          <div class="tl-content"><div class="tl-title">🏙 Campo de Fiori + Piazza Navona</div><div class="tl-note">Campo de Fiori tiene mercado de flores por la mañana (si llegáis antes) y se convierte en zona de bares al atardecer.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content"><div class="tl-title">🛏 Preparar equipaje para mañana</div><div class="tl-note">El tren a Florencia sale a las 05:40. Checkout antes de las 10:00 pero mañana salís a las 05:00 — acordad con Germano dejar las maletas o hacer late checkout.</div></div>
+        </div>
+      </div>
+
+      <div class="sect-divider"><div class="sect-divider-line"></div><div class="sect-divider-label">Tickets del día</div><div class="sect-divider-line"></div></div>
+      <div class="ticket-row">
+        <span class="ticket t-online">🌐 Vaticano — reservar online €17/pax</span>
+        <span class="ticket t-insitu">🎟 Castel Sant'Angelo — €15/pax (opcional)</span>
+        <span class="ticket t-insitu">🎟 Cúpula San Pedro — €8-10/pax</span>
+      </div>
+
+      <div class="box tip"><div class="box-icon">💡</div><div class="box-body"><div class="box-title">Tip de Roma</div>Alquilad una Vespa por 2-3 horas (~€30-40). Ver el Coliseo, el Foro y pasar por el Circo Máximo en moto es una experiencia completamente distinta y perfecta para una pareja aventurera. Empresas como Bici&Baci alquilan scooters eléctricos.</div></div>
+      <div class="box food"><div class="box-icon">🍽</div><div class="box-body"><div class="box-title">Desayuno romano obligatorio</div>Cornetto (croissant italiano) + cappuccino en un bar de barrio. Regla: si ves a italianos comiendo de pie en la barra, ese bar es bueno. Precio: €1.50-2. NUNCA pidas cappuccino después del desayuno — en Italia solo se toma por la mañana.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ FLORENCIA + PISA ══════════════════ -->
+<div class="section" id="firenze">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Florencia + Pisa — El día más intenso</h2>
+    <p style="color:var(--muted);font-size:13px">Martes 2 junio · 3 ciudades en 1 día · Termina en tren nocturno a Venecia</p>
+  </div>
+
+  <div class="box alert"><div class="box-icon">🚨</div><div class="box-body"><div class="box-title">El día más apretado del viaje — leed esto con calma</div>Salís de Roma a las 05:40, llegáis a Florencia a las 06:46. Tenéis hasta las 13:38 para ver Florencia (casi 7h). Luego Pisa (15:04 a 20:06 = 5h). El tren nocturno a Venecia sale a las 23:18. No podéis perder ningún tren.</div></div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--firenze)">
+      <div class="day-num">2</div>
+      <div class="day-info">
+        <div class="day-date">MARTES · JUNIO</div>
+        <div class="day-title">Roma → Florencia → Pisa → Venecia</div>
+      </div>
+      <div class="day-window">4 trenes<br>1 tren nocturno</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item" style="background:#ffeedd">
+          <div class="tl-time">05:00</div>
+          <div class="tl-content"><div class="tl-title">🏃 Salir del hotel — Roma Termini</div><div class="tl-note">Tren Italo sale a las 05:40 — estar en Termini a las 05:10. Desayunar en el bar de la estación.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">06:46</div>
+          <div class="tl-content"><div class="tl-title">🌸 Llegada Florencia SMN — guardar maletas</div><div class="tl-note">Consigna en la estación (~€6/maleta). Salid sin peso a explorar.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">07:00</div>
+          <div class="tl-content"><div class="tl-title">⛪ Duomo + Baptisterio de San Juan</div><div class="tl-note">La catedral es gratis por fuera — impresionante a las 7am sin nadie. El interior tiene entrada (~€20 con todo). El Baptisterio tiene las puertas de oro del Paraíso.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00</div>
+          <div class="tl-content"><div class="tl-title">🌉 Ponte Vecchio</div><div class="tl-note">El puente de los joyeros. De mañana temprano está casi vacío. A 15 min del Duomo caminando.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">10:00</div>
+          <div class="tl-content"><div class="tl-title">🎨 Galería de la Academia (David de Miguel Ángel)</div><div class="tl-note">Reservar online (€12/pax + tarifa reserva). Calculad 1.5h. El David es más grande e imponente de lo que uno imagina.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:00</div>
+          <div class="tl-content"><div class="tl-title">🏺 Fontana del Porcellino + Buchetta del Vino</div><div class="tl-note">La Fontana del Porcellino — frota la nariz del jabalí y echa una moneda en la rejilla para que tu deseo se cumpla. Las "buchette del vino" son ventanitas medievales en las paredes — algunas bodegas las usan para vender vino desde €3.</div></div>
+        </div>
+        <div class="tl-item" style="background:#ffeedd">
+          <div class="tl-time">13:10</div>
+          <div class="tl-content"><div class="tl-title">🏃 Recoger maletas — estación Florencia SMN</div><div class="tl-note">Tren a Pisa sale a las 13:53. Estar en el andén a las 13:38.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">15:04</div>
+          <div class="tl-content"><div class="tl-title">🗼 Llegada Pisa — directo a la Torre</div><div class="tl-note">Bus LAM Rossa desde la estación a la Piazza dei Miracoli (€1.50, 10 min). O a pie en 20 min.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">15:30</div>
+          <div class="tl-content"><div class="tl-title">🗼 Piazza dei Miracoli — Torre Inclinada</div><div class="tl-note">La foto icónica "empujando la torre" hacedla aquí. La Torre se puede subir (€18/pax) pero con el tiempo justo es opcional — la plaza ya es impresionante. El Baptisterio y el Camposanto están en la misma plaza.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">18:00</div>
+          <div class="tl-content"><div class="tl-title">🍦 Helado + paseo por el centro</div><div class="tl-note">Pisa tiene una zona universitaria muy animada junto al río Arno. Más tranquila y auténtica que Florencia.</div></div>
+        </div>
+        <div class="tl-item" style="background:#ffeedd">
+          <div class="tl-time">21:32</div>
+          <div class="tl-content"><div class="tl-title">🚆 Pisa → Florencia (regreso incluido)</div><div class="tl-note">El tren de vuelta a Florencia está incluido en vuestro billete ($0). Llegas a Florencia a las 22:33.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">23:18</div>
+          <div class="tl-content"><div class="tl-title">🌙 Tren nocturno Florencia → Venecia</div><div class="tl-note">InterCity Notte · con transbordo · 10h 14min · llegáis a Venecia a las 06:20. Llevad almohada de cuello.</div></div>
+        </div>
+      </div>
+
+      <div class="box warn" style="margin-top:1rem"><div class="box-icon">⚠️</div><div class="box-body"><div class="box-title">El tren nocturno tiene transbordo</div>Verificad en el billete dónde y cuándo es el transbordo. Poned alarma para no pasaros. Guardad el billete accesible.</div></div>
+      <div class="box food"><div class="box-icon">🍦</div><div class="box-body"><div class="box-title">Come esto en Florencia</div>Gelato en <strong>Gelateria dei Neri</strong> o Gelateria Dei Medici — buscar las que tienen el helado tapado en pozos (señal de calidad). Y el <strong>lampredotto</strong> — bocadillo de callos florentino en el mercado central, €4. Aventura garantizada.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ VENECIA ══════════════════ -->
+<div class="section" id="venezia">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Venecia — La ciudad sobre el agua</h2>
+    <p style="color:var(--muted);font-size:13px">3–4 junio · Hotel al Graspo de Ua (S. Marco 5094)</p>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--venezia)">
+      <div class="day-num">3</div>
+      <div class="day-info">
+        <div class="day-date">MIÉRCOLES · JUNIO</div>
+        <div class="day-title">Venecia — Llegada y Gran Canal</div>
+      </div>
+      <div class="day-window">Llegada 06:20<br>en tren nocturno</div>
+    </div>
+    <div class="day-body">
+      <div class="box warn"><div class="box-icon">⚠️</div><div class="box-body">Llegaréis cansados del tren nocturno. El hotel no abre check-in hasta las 14:00. Guardad maletas en la estación y descansad en un café o jardín antes de explorar.</div></div>
+
+      <div class="timeline" style="margin-top:1rem">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">06:20</div>
+          <div class="tl-content"><div class="tl-title">🚤 Llegada Venezia Santa Lucia</div><div class="tl-note">La estación da directamente al Gran Canal. Ese primer vistazo al canal al salir de la estación es uno de los mejores momentos del viaje.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">07:00</div>
+          <div class="tl-content"><div class="tl-title">🚤 Vaporetto Línea 1 — Gran Canal completo</div><div class="tl-note">Comprad un pase 24h (~€25/pax). La Línea 1 (lenta) recorre todo el Gran Canal con los palacios. A las 7am está casi vacío. Sentaos en la proa.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">09:00</div>
+          <div class="tl-content"><div class="tl-title">⛪ Basílica de San Marcos</div><div class="tl-note">Gratis para ver el interior básico. Las colas empiezan tarde — a las 9am es manejable. La Plaza se llena de turistas después de las 10am.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">10:30</div>
+          <div class="tl-content"><div class="tl-title">🌉 Puente de Rialto + Barrio Cannaregio</div><div class="tl-note">El Rialto es el puente más antiguo. Cannaregio es el barrio judío — el más auténtico y menos turístico de Venecia. Perderse por sus callejones es la mejor actividad.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">14:00</div>
+          <div class="tl-content"><div class="tl-title">🏨 Check-in Hotel al Graspo de Ua</div><div class="tl-note">S. Marco 5094. En pleno corazón de Venecia. Confirmar con antelación.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">16:00</div>
+          <div class="tl-content"><div class="tl-title">🌉 Puente de los Suspiros</div><div class="tl-note">El puente más romántico de Venecia. Leyenda: si dos enamorados se besan bajo el puente en una góndola al atardecer, su amor será eterno. Misión obligatoria.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">18:00</div>
+          <div class="tl-content"><div class="tl-title">🌅 Barrio Dorsoduro al atardecer</div><div class="tl-note">El barrio de los artistas. Tomad un Aperol Spritz en la Fondamenta delle Zattere — con vista al canal y el sol cayendo. El mejor Aperol Spritz del mundo cuesta ~€5.</div></div>
+        </div>
+      </div>
+
+      <div class="box couple"><div class="box-icon">💕</div><div class="box-body"><div class="box-title">El momento más romántico de Venecia</div>Una góndola cuesta €80-100 (30 min, para 2 personas). Es caro pero es Venecia — si hay un momento para gastarlo es este. Si el precio da vértigo, el vaporetto nocturno por el Gran Canal a €9.50 da la misma magia.</div></div>
+      <div class="box food"><div class="box-icon">🦑</div><div class="box-body"><div class="box-title">Come esto en Venecia</div><strong>Sarde in saor</strong> (sardinas marinadas con cebolla y pasas — medieval y delicioso), <strong>bigoli in salsa</strong> (pasta gruesa con anchoas) y el <strong>cicchetti</strong> — los pintxos venecianos. En el bar All'Arco (junto al Rialto) hacen los mejores, €1-2 cada uno. Comed de pie en la barra como los locales.</div></div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--venezia)">
+      <div class="day-num">4</div>
+      <div class="day-info">
+        <div class="day-date">JUEVES · JUNIO</div>
+        <div class="day-title">Murano + Vuelo a París</div>
+      </div>
+      <div class="day-window">Vuelo 12:30<br>Aeropuerto 10:30</div>
+    </div>
+    <div class="day-body">
+      <div class="box warn"><div class="box-icon">⚠️</div><div class="box-body">El aeropuerto Marco Polo está a 45 min en vaporetto o autobús (ATVO €10/pax). Con el vuelo a las 12:30 debéis estar allí a las 10:30. Salid del hotel a las 09:30 máximo.</div></div>
+
+      <div class="timeline" style="margin-top:1rem">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">07:00</div>
+          <div class="tl-content"><div class="tl-title">🏝 Isla de Murano — cristal soplado</div><div class="tl-note">10 min en vaporetto desde Santa Lucia. Los maestros vidrieros trabajan desde las 8am. Las demostraciones gratuitas son alucinantes. Podéis comprar una pieza directamente de quien la hizo.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:00</div>
+          <div class="tl-content"><div class="tl-title">🏃 Checkout + traslado aeropuerto</div><div class="tl-note">ATVO bus desde Piazzale Roma (€10/pax, 25 min) o vaporetto desde Fondamente Nove (€15/pax, 45 min). El bus es más rápido con maletas.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">12:30</div>
+          <div class="tl-content"><div class="tl-title">✈ Venecia VCE → París Orly</div><div class="tl-note">EasyJet · 1h 45min · llegáis a las 14:15.</div></div>
+        </div>
+      </div>
+
+      <div class="box tip"><div class="box-icon">💡</div><div class="box-body"><div class="box-title">Venecia cobra tasa de entrada</div>En junio algunos días se cobra €5/persona para entrar a la ciudad. Verificad en cda.ve.it — si aplica a vuestras fechas, pagadla online antes de llegar para evitar colas.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PARÍS ══════════════════ -->
+<div class="section" id="paris">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">París — La ciudad de la luz</h2>
+    <p style="color:var(--muted);font-size:13px">4–7 junio · Apartamento (Gal) · Checkout 07 jun antes de 12:00 ⚠️</p>
+  </div>
+
+  <div class="box alert"><div class="box-icon">🚨</div><div class="box-body"><div class="box-title">CRÍTICO — Checkout París el 7 junio</div>Vuestro vuelo a Barcelona sale a las 06:45. Tenéis que salir del apartamento a las 04:30-05:00. Coordinad con Gal una salida anticipada o dejad maletas en la recepción la noche anterior.</div></div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--paris)">
+      <div class="day-num">4</div>
+      <div class="day-info">
+        <div class="day-date">JUEVES · JUNIO</div>
+        <div class="day-title">Llegada + Torre Eiffel</div>
+      </div>
+      <div class="day-window">Llegada Orly<br>14:15</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">14:15</div>
+          <div class="tl-content"><div class="tl-title">✈ Llegada París Orly</div><div class="tl-note">OrlyBus al centro (~€11.30/pax, 30 min) o RER B + RER C (~€13.40/pax, 45 min). Sacad el Carnet de 10 viajes de metro (€17.35) para los próximos días.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">17:00</div>
+          <div class="tl-content"><div class="tl-title">🗼 Torre Eiffel — tarde-noche</div><div class="tl-note">Si tenéis entrada: subid. Si no: ver desde el Campo de Marte es igual de impresionante y gratis. A las 22:00 la torre brilla durante 5 minutos — uno de los espectáculos más bonitos del mundo.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">20:00</div>
+          <div class="tl-content"><div class="tl-title">🌊 Paseo por el Sena</div><div class="tl-note">El Pont de l'Alma, el Pont des Arts — los mejores para caminar de noche. Notre-Dame iluminada desde el Pont de l'Archevêché.</div></div>
+        </div>
+      </div>
+      <div class="box money"><div class="box-icon">💰</div><div class="box-body"><div class="box-title">Torre Eiffel — precios en sitio</div>Planta 1 y 2 (sin subir a la cima): €18.80/pax. Hasta la cima: €28.30/pax. Se vende online en toureiffel.paris. Sin reserva = colas de 2-3h.</div></div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--paris)">
+      <div class="day-num">5</div>
+      <div class="day-info">
+        <div class="day-date">VIERNES · JUNIO</div>
+        <div class="day-title">Louvre + Montmartre</div>
+      </div>
+      <div class="day-window">Louvre 10:00 ✅<br>Entrada reservada</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">10:00</div>
+          <div class="tl-content"><div class="tl-title">🎫 Museo del Louvre ✅ CONFIRMADO</div><div class="tl-note">€32/pax · Acceso por la Pirámide, Carrusel o Porte des Lions. Con 2-3h podéis ver la Mona Lisa, la Venus de Milo y la Victoria de Samotracia. No intentéis verlo todo — es imposible.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">13:00</div>
+          <div class="tl-content"><div class="tl-title">🏛 Champs-Élysées + Arco del Triunfo</div><div class="tl-note">Subir al Arco del Triunfo (~€13/pax) da una vista alucinante de las 12 avenidas que convergen. El boulevard es el paseo más famoso del mundo.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">16:00</div>
+          <div class="tl-content"><div class="tl-title">🎨 Montmartre + Sacré-Cœur</div><div class="tl-note">El barrio bohemio de París. Subid las escaleras de la Butte Montmartre hasta el Sacré-Cœur — la vista de París desde arriba es espectacular al atardecer. La plaza de los artistas (Place du Tertre) tiene retratistas que dibujan tu pareja en minutos.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">20:00</div>
+          <div class="tl-content"><div class="tl-title">🍷 Cena en Montmartre</div><div class="tl-note">Quedaos a cenar en Montmartre — los restaurantes de la Rue Lepic tienen buena relación calidad-precio para París.</div></div>
+        </div>
+      </div>
+      <div class="box couple"><div class="box-icon">💕</div><div class="box-body"><div class="box-title">El momento más Instagrameable de París</div>Las Galerías Lafayette tienen una terraza en la azotea completamente gratis con vistas panorámicas del tejado de París y la Torre Eiffel. Poca gente la conoce. Cerca del Louvre.</div></div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--paris)">
+      <div class="day-num">6</div>
+      <div class="day-info">
+        <div class="day-date">SÁBADO · JUNIO</div>
+        <div class="day-title">Versailles</div>
+      </div>
+      <div class="day-window">Versailles 09:30 ✅<br>⚠️ Día muy cargado</div>
+    </div>
+    <div class="day-body">
+      <div class="box alert"><div class="box-icon">🚨</div><div class="box-body"><div class="box-title">PSG + Versailles el mismo día — NO ES REALISTA</div>Versailles queda a 45 min de París en RER C. El palacio y los jardines requieren 5-6h mínimo. Después, cruzar toda París hasta el PSG (al otro extremo) es otra hora. Y el tour del estadio tiene su propia duración. Este día está sobrecargado — el PSG es para otro viaje o para otro día si lo podéis reorganizar.</div></div>
+
+      <div class="timeline" style="margin-top:1rem">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">08:00</div>
+          <div class="tl-content"><div class="tl-title">🚂 RER C → Versailles-Château Rive Gauche</div><div class="tl-note">45 min desde París. Salid antes de las 08:30 para llegar a tiempo. Ticket: €7.20/pax ida y vuelta.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">09:30</div>
+          <div class="tl-content"><div class="tl-title">🏰 Palacio de Versailles ✅ CONFIRMADO</div><div class="tl-note">€35/pax · Puerta A / Pavillon Dufour · LLEGAR PUNTUAL — más de 1h sin acceso. El Billet Passeport incluye el palacio, jardines y grandes Trianones.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">13:00</div>
+          <div class="tl-content"><div class="tl-title">🌿 Jardines de Versailles</div><div class="tl-note">Los jardines son enormes — 800 hectáreas. Los días de fuentes musicales (~€9.50 extra) son espectaculares. Podéis alquilar una barca en el Gran Canal (~€17/hora).</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">15:30</div>
+          <div class="tl-content"><div class="tl-title">🚂 Regreso a París</div><div class="tl-note">RER C de vuelta. Tarde libre en París — barrio Le Marais, Notre-Dame, o simplemente tomar un café en una terraza.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content"><div class="tl-title">🌆 Última noche en París</div><div class="tl-note">Cena en Le Marais (el barrio más vibrante) y ver la Torre Eiffel brillar a las 22:00 una última vez.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">23:00</div>
+          <div class="tl-content"><div class="tl-title">🛏 Preparar equipaje — MADRUGADA</div><div class="tl-note">El vuelo sale a las 06:45. Despertad a las 04:00, salid a las 04:30. El metro abre a las 05:30 — si no llegaréis a tiempo, coged Uber (~€30 a Orly de madrugada).</div></div>
+        </div>
+      </div>
+      <div class="box food"><div class="box-icon">🧀</div><div class="box-body"><div class="box-title">Come esto en París</div><strong>Croissant de mantequilla</strong> en una boulangerie de barrio (no cadenas) al desayuno. <strong>Croque monsieur</strong> en una brasserie. <strong>Macarons</strong> de Ladurée o Pierre Hermé. Y en Montmartre: <strong>crêpe</strong> de Nutella en la calle, €4, inmejorable.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ BARCELONA ══════════════════ -->
+<div class="section" id="barcelona">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Barcelona — Base de operaciones</h2>
+    <p style="color:var(--muted);font-size:13px">7 jun – 13 jun + 15 jun – 19 jun · EADA Collbató lun-jue · Base en aparta. Nicole</p>
+  </div>
+
+  <div class="box alert"><div class="box-icon">🚨</div><div class="box-body"><div class="box-title">Domingo 7 junio — Llegáis sin dormir</div>Vuelo París-Barcelona a las 06:45 (levantaros a las 04:00). Llegáis a las 08:25 agotados. Tenéis planeados Camp Nou + Casa Batlló + Sagrada Familia. Es demasiado. Reservad la Sagrada Familia (la más importante) y descansad el resto del día. El Camp Nou y Casa Batlló son para el fin de semana del 12-13 junio.</div></div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--barcelona)">
+      <div class="day-num">7</div>
+      <div class="day-info">
+        <div class="day-date">DOMINGO · JUNIO</div>
+        <div class="day-title">Barcelona — Llegada + Sagrada Familia</div>
+      </div>
+      <div class="day-window">Vuelo 08:25<br>Check-in Nicole</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">08:25</div>
+          <div class="tl-content"><div class="tl-title">✈ Llegada Barcelona El Prat</div><div class="tl-note">Metro L9 Sur al centro (~€5.90, 30 min) o Aerobus (~€6.75, 35 min). El Aerobus es más cómodo con maletas.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:00</div>
+          <div class="tl-content"><div class="tl-title">⛪ Basílica Sagrada Familia ✅ RESERVADA</div><div class="tl-note">€56.84/2pax ya pagado. La obra maestra de Gaudí — en construcción desde 1882, sin fecha definitiva de fin. Por dentro es alucinante con la luz filtrándose por las vidrieras.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">14:00</div>
+          <div class="tl-content"><div class="tl-title">🏠 Check-in apartamento (Nicole) + siesta</div><div class="tl-note">Lleváis sin dormir bien desde las 4am. Descansad. Barcelona os espera toda la semana.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content"><div class="tl-title">🌊 Barceloneta — primer paseo</div><div class="tl-note">La playa urbana más famosa de Europa. A 20 min del centro en metro. Cena de mariscos en el Passeig Marítim.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--barcelona)">
+      <div class="day-num">8–11</div>
+      <div class="day-info">
+        <div class="day-date">LUNES–JUEVES · JUNIO</div>
+        <div class="day-title">EADA Bloque 1 — Collbató</div>
+      </div>
+      <div class="day-window">09:00–19:00<br>Hospedaje incluido L-M</div>
+    </div>
+    <div class="day-body">
+      <div class="box tip"><div class="box-icon">🎓</div><div class="box-body"><div class="box-title">Días de clases — ¿qué hace Estrella?</div>Collbató está a 45 min de Barcelona. Barcelona tiene para varios días: Park Güell, barrio Gótico, Las Ramblas, Passeig de Gràcia (Casa Batlló y La Pedrera), mercado de La Boqueria, barrio del Born. El jueves 11 regresáis a las 19:00 — cena juntos en el barrio Gràcia.</div></div>
+      <div class="box couple"><div class="box-icon">💕</div><div class="box-body"><div class="box-title">Fin de semana del 12-13 junio</div>Viernes 12 es vuestro primer fin de semana libre. Camp Nou, Casa Batlló o Park Güell (reservar online). El sábado 13 madrugáis a las 05:00 para Ámsterdam. Planead una cena especial el viernes noche.</div></div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--barcelona)">
+      <div class="day-num">Costa Brava</div>
+      <div class="day-info">
+        <div class="day-date">VIERNES 12 JUNIO · SUGERENCIA</div>
+        <div class="day-title">Escapada a la Costa Brava</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="box tip"><div class="box-icon">💡</div><div class="box-body"><div class="box-title">Tenéis esto en vuestro itinerario — aquí los detalles</div>La Costa Brava está a 1.5h de Barcelona en bus o coche. Calella de Palafrugell, Begur o Cadaqués son los pueblos más bonitos — casas blancas sobre acantilados. Perfecto para dos aventureros. Alquilad un coche (~€40-50/día) para más libertad. <strong>⚠️ Si vais el viernes 12, recordad que el sábado 13 madrugáis a las 05:00 para el vuelo a Ámsterdam.</strong></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ÁMSTERDAM ══════════════════ -->
+<div class="section" id="amsterdam">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Ámsterdam — Canales y arte</h2>
+    <p style="color:var(--muted);font-size:13px">13–15 junio · Hotel Bellington (P.C. Hooftstraat 78-80)</p>
+  </div>
+
+  <div class="box alert"><div class="box-icon">🚨</div><div class="box-body"><div class="box-title">Lunes 15 junio — Vuelo 05:55 y clases a las 09:00</div>El vuelo de regreso sale a las 05:55. Debéis estar en Schiphol a las 04:00. Y ese mismo día empiezan las clases en EADA a las 09:00. Es prácticamente imposible llegar a Collbató a tiempo. Hablar con EADA con anticipación.</div></div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--amsterdam)">
+      <div class="day-num">13</div>
+      <div class="day-info">
+        <div class="day-date">SÁBADO · JUNIO</div>
+        <div class="day-title">Llegada + Van Gogh + Canales</div>
+      </div>
+      <div class="day-window">Van Gogh 11:00 ✅<br>ArenA 14:00 ✅</div>
+    </div>
+    <div class="day-body">
+      <div class="box warn"><div class="box-icon">⚠️</div><div class="box-body">Vuelo llega a las 09:40. Schiphol → centro en tren (20 min, €5.40). El Van Gogh es a las 11:00 — el hotel no tendrá listo el cuarto. Dejad maletas en consigna o pedid early luggage drop.</div></div>
+
+      <div class="timeline" style="margin-top:1rem">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">09:40</div>
+          <div class="tl-content"><div class="tl-title">✈ Llegada Amsterdam Schiphol</div><div class="tl-note">Tren directo a Amsterdam Centraal (20 min). El hotel está en P.C. Hooftstraat, zona de museos — perfectamente ubicado.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:00</div>
+          <div class="tl-content"><div class="tl-title">🎨 Museo Van Gogh ✅ CONFIRMADO</div><div class="tl-note">3 tickets (Audio Tour). Museumplein 6 · Tolerancia máx: 30 min. Van Gogh pintó más de 900 cuadros en 10 años — los originales en sala son completamente distintos a cualquier reproducción.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">14:00</div>
+          <div class="tl-content"><div class="tl-title">⚽ Tour Johan Cruijff ArenA ✅ CONFIRMADO</div><div class="tl-note">Booking ID: 177932028551414 · Metro 50/54 → Amsterdam Bijlmer ArenA · 5 min andando. Vestuario Ajax, túnel, zona mixta, Gallery of Fame. El Ajax es el club más importante de la historia del fútbol holandés.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">17:00</div>
+          <div class="tl-content"><div class="tl-title">🚲 Canales + Barrio Jordaan</div><div class="tl-note">El Jordaan es el barrio más bonito — casas estrechas inclinadas sobre canales. El mercado de flores (Bloemenmarkt) cierra a las 17:30. Alquilad bicicletas (~€12/día) para moverse como locales.</div></div>
+        </div>
+      </div>
+
+      <div class="box tip"><div class="box-icon">💡</div><div class="box-body"><div class="box-title">Alternativas especiales para aventureros en Ámsterdam</div>Los molinos de Zaanse Schans están a 20 min en tren (€4) — los molinos de viento más fotogénicos de Holanda, junto a casas de madera verde. No es el parque de tulipanes (Keukenhof cierra en mayo) pero es igual de holandés. También: el barrio De Pijp tiene el mercado Albert Cuyp (el más grande de Holanda) y el ambiente más joven y local.</div></div>
+      <div class="box food"><div class="box-icon">🧇</div><div class="box-body"><div class="box-title">Come esto en Ámsterdam</div><strong>Stroopwafel</strong> fresco del mercado (puesto caliente sobre el café) — €1.50. <strong>Bitterballen</strong> (croquetas holandesas de carne, €1 cada una). <strong>Haring</strong> — arenque crudo con cebolla, el snack más holandés del mundo, €3-4 en los puestos del puerto. Si os atrevéis, es una experiencia.</div></div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--amsterdam)">
+      <div class="day-num">14</div>
+      <div class="day-info">
+        <div class="day-date">DOMINGO · JUNIO</div>
+        <div class="day-title">Rijksmuseum + Anne Frank</div>
+      </div>
+      <div class="day-window">Anne Frank 20:45 ✅<br>Última noche</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">09:00</div>
+          <div class="tl-content"><div class="tl-title">🏛 Rijksmuseum</div><div class="tl-note">El museo más importante de Holanda — Vermeer, Rembrandt, la Ronda de Noche. Reservar online (~€22.50/pax). 2-3 horas.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:00</div>
+          <div class="tl-content"><div class="tl-title">⛵ Paseo en barca por los canales</div><div class="tl-note">~€15-20/pax en barca compartida o ~€60-80 para una barca privada para dos. Ver los canales desde el agua es completamente diferente. Las barcas eléctricas se alquilan sin carnet (~€25/hora).</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">15:00</div>
+          <div class="tl-content"><div class="tl-title">🌼 Barrio De Pijp + mercado Albert Cuyp</div><div class="tl-note">El barrio más joven de Ámsterdam. El mercado al aire libre más grande de Holanda. Probad los stroopwafels recién hechos.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content"><div class="tl-title">🍽 Cena — última en Ámsterdam</div><div class="tl-note">En el Jordaan hay restaurantes excelentes. Pronto Bruxelles (mussels belgas) o Envy (cocina holandesa moderna) son buenas opciones.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">20:45</div>
+          <div class="tl-content"><div class="tl-title">📖 Casa de Anne Frank ✅ CONFIRMADO</div><div class="tl-note">€16.50/pax · Prinsengracht 263-267 · Solo en ese horario. No se permiten maletas grandes. Llevar el QR en el móvil. Es una experiencia sobria y muy poderosa.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">22:00</div>
+          <div class="tl-content"><div class="tl-title">🛏 Preparar equipaje — MADRUGADA 04:00</div><div class="tl-note">El vuelo sale a las 05:55. Estar en Schiphol a las 04:00. El primer tren sale a las 03:30 desde Centraal (verifica horarios). O coged un Uber (~€35 a esa hora).</div></div>
+        </div>
+      </div>
+
+      <div class="box couple"><div class="box-icon">💕</div><div class="box-body"><div class="box-title">Paseo nocturno en Ámsterdam</div>Los canales de noche con los reflejos de las luces son de los más bonitos de Europa. El barrio Jordaan de noche, con los puentes iluminados, es perfecto para pasear de la mano antes de la madrugada.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ MADRID FINAL ══════════════════ -->
+<div class="section" id="madrid2">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Madrid — El cierre perfecto</h2>
+    <p style="color:var(--muted);font-size:13px">19–21 junio · Casa de vuestra amiga · Vuelo Lima 21 jun 08:10</p>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--madrid)">
+      <div class="day-num">19</div>
+      <div class="day-info">
+        <div class="day-date">VIERNES · JUNIO</div>
+        <div class="day-title">Llegada + Prado + Madrid nocturno</div>
+      </div>
+      <div class="day-window">AVE 05:45<br>Llega 09:02</div>
+    </div>
+    <div class="day-body">
+      <div class="box warn"><div class="box-icon">⚠️</div><div class="box-body">El AVE sale a las 05:45 de Barcelona Sants. Es la madrugada después de las clases. Preparad equipaje el jueves 18 por la noche.</div></div>
+      <div class="timeline" style="margin-top:1rem">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">09:02</div>
+          <div class="tl-content"><div class="tl-title">🚄 Llegada Madrid Atocha</div><div class="tl-note">Dejad maletas en casa de vuestra amiga y salid a explorar. Madrid en verano tiene vida hasta las 2am.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">11:00</div>
+          <div class="tl-content"><div class="tl-title">🎨 Museo del Prado</div><div class="tl-note">€15/pax. Velázquez, Goya, El Bosco. Las Meninas de Velázquez en vivo es una experiencia. Calculad 2-3 horas.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">14:00</div>
+          <div class="tl-content"><div class="tl-title">⛲ Fuente de Cibeles + Parque del Retiro</div><div class="tl-note">Cibeles es el monumento más icónico de Madrid — donde celebra el Real Madrid los títulos. El Retiro tiene un lago donde se puede remar (€6 por barca, 45 min).</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content"><div class="tl-title">🍺 Malasaña + Chueca — Madrid nocturno</div><div class="tl-note">Los barrios más animados de Madrid. Vermut con tapas antes de cenar — la cultura del aperitivo madrileño. Cena tarde (21:00-22:00 es lo normal en Madrid).</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-header" style="background:var(--madrid)">
+      <div class="day-num">20</div>
+      <div class="day-info">
+        <div class="day-date">SÁBADO · JUNIO</div>
+        <div class="day-title">Bernabéu + Última noche en Europa</div>
+      </div>
+      <div class="day-window">Bernabéu 12:00 ✅<br>Vuelo mañana 08:10</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">10:00</div>
+          <div class="tl-content"><div class="tl-title">🏛 Palacio Real + Plaza de Oriente</div><div class="tl-note">El palacio más grande de Europa occidental. Entrada €14/pax. Los jardines exteriores son gratuitos y preciosos.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:00</div>
+          <div class="tl-content"><div class="tl-title">⚽ Tour Santiago Bernabéu ✅ CONFIRMADO</div><div class="tl-note">Av. Concha Espina 1 · Metro L10 · Sin consigna de equipaje. El estadio nuevo tiene una cubierta metálica alucinante. Vestuarios, banquillos, sala de trofeos.</div></div>
+        </div>
+        <div class="tl-item" style="background:#faf8f4">
+          <div class="tl-time">14:30</div>
+          <div class="tl-content"><div class="tl-title">🌆 Gran Vía + Puerta del Sol + Plaza Mayor</div><div class="tl-note">El centro histórico de Madrid a pie. La Plaza Mayor para el último café europeo con calma.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-content"><div class="tl-title">🍷 Cena de celebración</div><div class="tl-note">Mercado de San Miguel o un restaurante con cocido madrileño. Esta es la última cena en Europa — hacedla memorable.</div></div>
+        </div>
+        <div class="tl-item" style="background:#ffeedd">
+          <div class="tl-time">23:00</div>
+          <div class="tl-content"><div class="tl-title">🛏 Preparad todo — vuelo Lima 08:10</div><div class="tl-note">Estar en Barajas a las 05:30-06:00. Salid de casa a las 04:30. El Metro no funciona — Uber o taxi (~€30-35 a esa hora).</div></div>
+        </div>
+      </div>
+      <div class="box couple"><div class="box-icon">💕</div><div class="box-body"><div class="box-title">La última noche en Europa</div>El Templo de Debod al atardecer (el único templo egipcio en Europa, en Madrid) y la vista nocturna desde la azotea del Círculo de Bellas Artes (~€5) son el cierre perfecto de este viaje.</div></div>
+      <div class="box food"><div class="box-icon">🥩</div><div class="box-body"><div class="box-title">La última comida en Europa — hazla especial</div><strong>Cocido madrileño</strong> (el plato más madrileño — garbanzos, morcillo, chorizo, tres vuelcos) o un buen jamón ibérico de bellota en el Mercado de San Miguel. También: el <strong>bocata de calamares</strong> frente al Palacio Real, €4, obligatorio.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PRESUPUESTO ══════════════════ -->
+<div class="section" id="presupuesto">
+  <div style="padding:1.5rem 0 0.5rem">
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300">Presupuesto y precios en sitio</h2>
+    <p style="color:var(--muted);font-size:13px">Lo que ya está pagado y lo que pagaréis en el destino</p>
+  </div>
+
+  <div class="box money"><div class="box-icon">💰</div><div class="box-body"><div class="box-title">Presupuesto por persona: $8,000 USD</div>Geovanny: $3,139.77 disponibles · Estrella: $2,856.40 disponibles · Después de descontar lo ya gastado en transportes (~$530/pax) y hospedaje (~$612/pax) y tickets (~$309/pax), les quedan aproximadamente <strong>$1,700-1,900 cada uno</strong> para comida, actividades en sitio y compras.</div></div>
+
+  <div class="sect-divider"><div class="sect-divider-line"></div><div class="sect-divider-label">Tickets confirmados (ya pagados)</div><div class="sect-divider-line"></div></div>
+  <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:1rem">
+    <div class="transport-strip"><span class="ts-route">🎫 Estadio Olímpico Roma</span><span class="ts-time">31 may · 14:00</span><span class="ts-price">€17.50/pax ✅</span></div>
+    <div class="transport-strip"><span class="ts-route">🎫 Museo del Louvre</span><span class="ts-time">5 jun · 10:00</span><span class="ts-price">€32/pax ✅</span></div>
+    <div class="transport-strip"><span class="ts-route">🎫 Palacio de Versailles</span><span class="ts-time">6 jun · 09:30</span><span class="ts-price">€35/pax ✅</span></div>
+    <div class="transport-strip"><span class="ts-route">🎫 Museo Van Gogh</span><span class="ts-time">13 jun · 11:00</span><span class="ts-price">€19.97/pax ✅</span></div>
+    <div class="transport-strip"><span class="ts-route">🎫 Johan Cruijff ArenA</span><span class="ts-time">13 jun · 14:00</span><span class="ts-price">€27.50/pax ✅</span></div>
+    <div class="transport-strip"><span class="ts-route">🎫 Casa de Anne Frank</span><span class="ts-time">14 jun · 20:45</span><span class="ts-price">€16.50/pax ✅</span></div>
+    <div class="transport-strip"><span class="ts-route">🎫 Tour Santiago Bernabéu</span><span class="ts-time">20 jun · 12:00</span><span class="ts-price">€68.68/2pax ✅</span></div>
+    <div class="transport-strip"><span class="ts-route">⛪ Sagrada Familia</span><span class="ts-time">7 jun</span><span class="ts-price">€56.84/2pax ✅</span></div>
+  </div>
+
+  <div class="sect-divider"><div class="sect-divider-line"></div><div class="sect-divider-label">Comprar en sitio — precios estimados por persona</div><div class="sect-divider-line"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1rem">
+    <div class="must-item"><strong>🏛 Coliseo + Foro Romano</strong>~€18/pax · Reservar en coopculture.it antes de llegar</div>
+    <div class="must-item"><strong>⛪ Museos Vaticanos</strong>€17/pax · Reservar en museivaticani.va — urgente</div>
+    <div class="must-item"><strong>🗼 Torre Eiffel</strong>€18.80-28.30/pax según piso · toureiffel.paris</div>
+    <div class="must-item"><strong>⚽ Tour PSG</strong>~€26/pax · Si decidís ir · reservar en psg.fr</div>
+    <div class="must-item"><strong>🎨 Galería Academia (Florencia)</strong>€12/pax + tarifa reserva · museionline.it</div>
+    <div class="must-item"><strong>🌿 Fuentes Versailles</strong>€9.50/pax extra · días especiales</div>
+    <div class="must-item"><strong>🏛 Rijksmuseum Ámsterdam</strong>€22.50/pax · rijksmuseum.nl</div>
+    <div class="must-item"><strong>🎨 Museo del Prado Madrid</strong>€15/pax · museodelprado.es</div>
+    <div class="must-item"><strong>🚤 Vaporetto Venecia 24h</strong>€25/pax · en las taquillas del muelle</div>
+    <div class="must-item"><strong>🚂 RER C París–Versailles</strong>€7.20/pax ida y vuelta</div>
+    <div class="must-item"><strong>✈ Traslado Fiumicino–Roma</strong>€14/pax tren Leonardo Express</div>
+    <div class="must-item"><strong>✈ Traslado Schiphol–Ámsterdam</strong>€5.40/pax tren</div>
+  </div>
+
+  <div class="box warn"><div class="box-icon">⚠️</div><div class="box-body"><div class="box-title">Presupuesto de comida — la regla de oro en Europa</div>Si coméis en restaurantes junto a monumentos turísticos: €30-40/pax por comida. Si caminéis 2 calles hacia adentro: €10-20/pax. Desayuno en bar local: €3-5. Supermercado Lidl o Aldi para picnics y desayunos: ahorráis 40% del presupuesto de comida.</div></div>
+</div>
+
+</div><!-- end page -->
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: document.querySelector('.nav').offsetTop, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
